@@ -1,0 +1,23 @@
+<p>Home > General > Vinyl Collector's Message Board</p>
+<h2>Vinyl Collector's Message Board</h1>
+<p>Everything and anything pertaining to vinyls.</p>
+<ul class="forum-board" ng-init="vinylCtrl.getThreads()">
+	<div class="board-controls">		
+		<h3> {{ vinylCtrl.threadCount }} TOPICS IN THIS FORUM</h3>
+		<button>New Topic</button>
+	</div>
+	<li ng-repeat="thread in vinylCtrl.threads | orderBy: 'UNIX_TIMESTAMP(Date)':true"> 
+		<h4>{{ thread.Title }}</h4>
+		<p>{{ thread['UNIX_TIMESTAMP(Date)'] * 1000 | date : 'medium' }}</p>
+	</li>
+</ul>
+<div class="new-topic-form">
+	<h3> New Topic </h3>
+	<div ng-click="signInCtrl.closeModal()" class="box box3 clickable">
+	  <svg viewbox="0 0 40 40">
+	    <path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" />
+	  </svg>
+	</div>
+	<textarea type="text" maxlength="255" ng-model="vinylCtrl.newTitle"></textarea>
+	<button ng-click="vinylCtrl.createTopic()">Create Thread</button>
+</div>

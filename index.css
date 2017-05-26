@@ -1,0 +1,300 @@
+body {
+	font: normal 62.5% Cambria, Georgia, serif;
+	margin: 0px;
+	border-top: solid 5px #89abc6;
+}
+
+main {
+	width: 90%;
+	margin: 36px auto;
+}
+
+h1 {
+	font-size: 3.2em;
+	font-weight: normal;
+}
+
+img {
+	display: block;
+}
+
+svg {
+	height: auto;
+	width: 100%;
+}
+
+button {
+	background-color: #cfd8dc;
+	border: transparent;
+	border-radius: 15px;
+	font-size: 1.8em;
+	font-weight: 600;
+	line-height: 3em;
+}
+
+.button {
+  background-color: #4E6BA6;  
+  border-radius: 15px;
+  color: white;
+  padding: .5em;
+  text-decoration: none;
+}
+
+.header {
+	width: 100%;
+	background-color: #baddf9;
+}
+
+.logo-container {
+	display: inline-block;
+	width: 10%;
+	margin: 1.5%;
+}
+
+.title {
+	display: inline-block;
+	width: 12%;
+	top: 13%;
+	position: absolute;
+	text-align: center;
+}
+
+.title h1{
+	 top: 50%;
+}
+
+.header-nav {
+	display: inline-block;
+	float: right;
+	width: 15%;
+	top: 15%;
+	right: 5%;
+	position: absolute;
+}
+
+.header-nav a {
+	width: 50%;
+	left: 45%;
+	position: relative;
+	text-decoration: none;
+	font-size: 1.8em;
+}
+
+.sign-up {
+	width: 15%;
+	height: 10%;
+}
+
+.sign-up-body {
+	background-color: #edffff;
+	margin: 0px;
+	width: 100%;
+}
+
+.sign-up-body h2 {
+	font-size: 4.2em;
+	padding-top: 1em;
+	margin-top: 0px;
+	text-align: center;
+}
+
+.sign-up {
+	position: absolute;
+	left: 43%;
+}
+
+.sign-up button {
+	width: 100%;
+}
+
+.about-us {
+	padding-top: 6em;
+	width: 100%;
+}
+
+.about-us p {
+	font-size: 1.8em;
+	width: 80%;
+	margin: auto;
+}
+
+.sign-up-modal {
+	width: 25%;
+	position: absolute;
+	top: 25%;
+	left: 40%;
+	background-color: #89abc6;
+	border: solid 2px black;
+	border-radius: 15px;
+}
+
+.sign-up-modal form{
+	text-align: center;
+	width: 80%;
+	margin: auto;
+}
+
+.sign-up-modal h3 {
+	text-align: center;
+	font-size: 2.8em;
+	margin-bottom: 5px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+}
+
+.sign-up-modal label {
+	font-size: 1.8em;
+	text-align: center;
+}
+
+.sign-up-modal input {
+	margin-bottom: 1em;
+	width: 100%;
+	line-height: 2em;
+}
+
+.sign-up-modal .box {
+	float: right;
+}
+
+.sign-up-modal svg {
+	display: block;
+}
+
+.mask {
+	fill: grey;
+}
+
+.error-message {
+	font-size: 1.8em;
+	margin: 0px;
+	font-weight: 600;
+	color: orange;
+}
+
+/* Close Button CSS */
+.box {
+  margin: 20px;
+  background: #DDD;
+  float: left;
+  border-radius: 50%;
+}
+
+.box3 { width: 20px; }
+
+.close-x {
+  stroke: black;
+  fill: transparent;
+  stroke-linecap: round;
+  stroke-width: 5;
+}
+
+/* End of Close Button */
+
+.clickable:hover {
+	cursor: pointer;
+}
+
+.invalid {
+	border: solid .75px red;
+}
+
+.container {
+	padding-top: 15px;
+}
+
+.forum-board {
+	background-color: #ebebeb;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	list-style: none;
+	margin-top: 0;
+	border: solid 1px grey;
+	padding: 0;
+	max-width: 900px;
+}
+
+.forum-board li {
+	padding: 20px;
+}
+
+.forum-board li:hover {
+	padding: 20px;
+	cursor: pointer;
+}
+
+.forum-board h3 {
+	font-size: 2.2em;
+	color: white;
+	background: black;
+	padding: 15px;
+	margin: 0;
+}
+
+.forum-board h4 {
+	font-size: 1.7em;
+	color: #33b5d6;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.forum-board p {
+	font-size: 1.6em;
+}
+
+.forum-board li:nth-child(odd) {
+	background-color: white;
+}
+
+.container {
+	width: 100%;
+	background: lightgrey;
+}
+
+/* Generic Forum Board CSS */
+.board-controls {
+	display: block;
+	background-color: black;
+}
+
+.board-controls button {
+	float: right;
+}
+
+.board-controls button:hover {
+	cursor: pointer;
+}
+
+.board-controls h3 {
+	display: inline-block;
+}
+
+/* End of Generic Forum Board CSS */
+
+/* New Topic Form CSS */
+
+.new-topic-form {
+	position: absolute;
+	display: block;
+	width: 100%;
+	background-color: #89abc6;
+	text-align: center;
+	padding-bottom: 10px;
+	max-width: 650px;
+}
+
+.new-topic-form h3 {
+	font-size: 2.4em;
+}
+
+.new-topic-form textarea {
+	width: 80%;
+	resize: none;
+	min-height: 200px; 
+}
+
+.new-topic-form button {
+	margin-top: 15px;
+}

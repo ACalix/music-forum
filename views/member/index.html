@@ -1,0 +1,35 @@
+<header class="header">
+	<div class="logo-container">
+		<img src="/assets/logo.svg" alt="Logo">
+	</div>
+	<div class="title">
+    	<h1>Jukebox Talk</h1>
+    </div>
+</header>
+<section>
+	<div class="container">
+		<ul class="forum-board" ng-controller='HomeController as homeCtrl'>
+			<h3>GENERAL</h3>
+			<li ng-click="homeCtrl.selectBoard('vinyl')"> 
+				<h4>Vinyl Collector's Message Board</h4>
+				<p>Everything and anything pertaining to vinyls.</p>
+			</li>
+			<li ng-click="homeCtrl.selectBoard('cassette')">
+				<h4>Cassette Collector's Message Board</h4>
+				<p>Break out your pencils and rewind. This place is all about cassettes.</p>
+			</li>
+			<li ng-click="homeCtrl.selectBoard('sales')">
+				<h4>Sales/Trades/Wants</h4>
+				<p>Use this board to sell, trade, and request stuff you want.</p>
+			</li>
+			<li ng-click="homeCtrl.selectBoard('equipment')">
+				<h4>Turntables & Other Audio Equipment</h4>
+				<p>Brag about your gear and find out about other people's gear.</p>
+			</li>
+			<li ng-click="homeCtrl.selectBoard('random')">
+				<h4>Random Chat</h4>
+				<p>Whatever.</p>
+			</li>
+		</ul>
+	</div>
+</section>

@@ -1,0 +1,23 @@
+<header class="header">
+	<div class="logo-container">
+		<img src="/assets/logo.svg" alt="Logo">
+	</div>
+	<div class="title">
+    	<h1>Jukebox Talk</h1>
+    </div>
+	<nav class="header-nav">
+		<button class="button clickable" ng-click="showSignIn=true">Sign In</button>
+	</nav>
+</header>
+<section class="sign-up-body">
+	<h2>Join the Conversation</h2>
+	<div class="sign-up">
+		<button class="clickable" ng-click="showSignUp=true">Sign Up!</button>
+	</div>
+	<article class="about-us">
+		<p>Talk about the lastest hip-hop news, music, culture.</p>
+	</article>
+	<signup-modal ng-show="showSignUp===true"></signup-modal>
+	<signin-modal ng-show="showSignIn===true"></signup-modal>
+
+</section>
