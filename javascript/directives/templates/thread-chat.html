@@ -1,0 +1,23 @@
+<p>Home > General > Vinyl Collector's Message Board</p>
+<h2>Vinyl Collector's Message Board</h1>
+<p>Everything and anything pertaining to vinyls.</p>
+<ul class="forum-board" ng-init="threadCtrl.getThread()">
+	<div class="board-controls">		
+		<h3>{{threadCtrl.postCount}} TOPICS IN THIS FORUM</h3>
+		<button>New Topic</button>
+	</div>
+	<li ng-repeat="post in threadCtrl.posts | orderBy: 'UNIX_TIMESTAMP(PostDate)':true | limitTo: 5"> 
+			<h4>{{ post.Content }}</h4>
+			<p>{{ post['UNIX_TIMESTAMP(PostDate)'] * 1000 | date : 'medium' }}
+				<span>{{ post.user_id }}</span>
+			</p>
+	</li>
+	<div>
+		<span>Pages: </span>
+		<a class="clickable" ng-click="threadCtrl.seePage(page)" ng-repeat="page in threadCtrl.pageNumbers()"> {{ page }}</a>	
+	</div>
+</ul>
+<div>
+	<textarea type="text" ng-model="threadCtrl.content"></textarea>
+	<button ng-click="threadCtrl.postMessage()">Submit</button>
+</div>

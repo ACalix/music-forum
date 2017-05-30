@@ -7,13 +7,17 @@ angular.module('MusicForum')
 			this.threads = {};
 
 			$scope.getThreads = function(){
-				$http({method: 'GET', url: '/tendril/board/Vinyl'})
-				.then(function successCallback(res){
-					main.threads = res.data;
-					console.log(res.data);
-				}), function errorCallback(res) {
-					console.log('Fail!' + res);
-				};
-				console.log('HI');
+				if ($scope.userLoggedIn){
+					$http({method: 'GET', url: '/tendril/board/Vinyl'})
+					.then(function successCallback(res){
+						main.threads = res.data;
+						console.log('hi');
+						console.log($scope.userLoggedIn);
+					}), function errorCallback(res) {
+						console.log('Fail!' + res);
+					};
+				} else {
+					alert('Please log in');
+				}
 			};
 		}]);

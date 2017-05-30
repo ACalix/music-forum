@@ -5,8 +5,26 @@
 		<meta charset="utf-8" />
 		<link rel="stylesheet" href="index.css">
 	</head>
-	<body ng-app="MusicForum">
+	<body ng-controller="FrameController as frameCtrl" ng-app="MusicForum">
+		<header class="header">
+			<div class="header-container">
+				<h1 class="logo">
+					<a href="/#!/" class="logo-container title">
+						<img src="/assets/logo.svg" alt="Logo">
+						<span>Jukebox Talk</span>
+					</a>
+				</h1>
+				<nav class="header-nav">
+					<button class="logout clickable" ng-show="logoutAvailable()" ng-click="logout()">Log Out</button>
+					<button class="login clickable" ng-show="frameCtrl.showRegistration()" ng-click="toggleSignIn()">Sign In</button>
+					<button class="sign-up clickable" ng-show="frameCtrl.showRegistration()" ng-click="toggleSignUp()">Join</button>
+				</nav>
+			</div>
+			<signup-modal ng-show="signUpModal"></signup-modal>
+			<signin-modal ng-show="signInModal"></signup-modal>
+		</header>
 		<main ng-view></main>
+
 		<!-- Angular Dependencies -->
 		<script src="/javascript/lib/angular.min.js"></script>
 		<script src="/javascript/lib/angular-route.min.js"></script>
@@ -19,7 +37,11 @@
 		<!-- Modals -->
 		<script src="/javascript/directives/signupmodal.js"></script>
 		<script src="/javascript/directives/signinmodal.js"></script>
+
+		<!-- Views -->
 		<script src="/javascript/directives/messageboard.js"></script>
+		<script src="javascript/directives/threadchat.js"></script>
+		<script src="/javascript/controllers/frame-controller.js"></script>
 		<script src="/javascript/controllers/home-controller.js"></script>
 		<script src="/javascript/controllers/vinyl-controller.js"></script>
 	</body>

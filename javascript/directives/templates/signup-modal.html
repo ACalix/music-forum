@@ -1,16 +1,19 @@
-<div class="sign-up-modal">
-	<div ng-click="signUpCtrl.closeModal()" class="box box3 clickable">
-	  <svg viewbox="0 0 40 40">
-	    <path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" />
-	  </svg>
+<div class="modal-mask">
+	<a ng-click="signUpCtrl.closeModal()"></a>
+	<div class="modal-container">
+		<div class="modal-header">
+			<a class="close clickable" ng-click="signUpCtrl.closeModal()"></a>
+			<h3>Sign Up</h3>
+			<p class="error-message">{{ signUpCtrl.error }}</p>
+		</div>
+		<div class="modal-content">
+			<form novalidate name="sign-up" action="">
+				<label for="Username">Username</label><br>
+				<input type="text" ng-class="{ invalid:signUpCtrl.invalidUsername }" ng-model="signUpCtrl.userName" minlength="5" maxlength="16"><br>
+				<label for="Password">Password</label><br>
+				<input type="password" ng-class="{ invalid:signUpCtrl.invalidPass }" ng-model="signUpCtrl.password" maxlength="20"><br>
+				<input type="submit" class="clickable" value="Join" ng-click="signUpCtrl.createUser()">
+			</form><br>
+		</div>
 	</div>
-	<h3>Sign Up</h3>
-	<form novalidate name="sign-up" action="">
-		<p class="error-message">{{ signUpCtrl.error }}</p>
-		<label for="Username">Username</label><br>
-		<input type="text" ng-class="{ invalid:signUpCtrl.invalidUsername }" ng-model="signUpCtrl.userName" minlength="5" maxlength="16"><br>
-		<label for="Password">Password</label><br>
-		<input type="password" ng-class="{ invalid:signUpCtrl.invalidPass }" ng-model="signUpCtrl.password" maxlength="20"><br>
-		<button type="submit" class="clickable" ng-click="signUpCtrl.createUser()">Create Account</button>
-	</form><br>
 </div>

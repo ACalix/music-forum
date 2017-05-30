@@ -1,19 +1,30 @@
-<p>Home > General > Vinyl Collector's Message Board</p>
-<h2>Vinyl Collector's Message Board</h1>
-<p>Everything and anything pertaining to vinyls.</p>
+<div class="board-header">
+	<p>Home > General > Vinyl Collector's Message Board</p>
+	<h2>Vinyl Collector's Message Board</h1>
+	<p>Everything and anything pertaining to vinyls.</p>
+</div>
 <ul class="forum-board" ng-init="vinylCtrl.getThreads()">
 	<div class="board-controls">		
 		<h3> {{ vinylCtrl.threadCount }} TOPICS IN THIS FORUM</h3>
-		<button>New Topic</button>
+		<button ng-click="vinylCtrl.toggleModal()">New Topic</button>
 	</div>
-	<li ng-repeat="thread in vinylCtrl.threads | orderBy: 'UNIX_TIMESTAMP(Date)':true"> 
-		<h4>{{ thread.Title }}</h4>
-		<p>{{ thread['UNIX_TIMESTAMP(Date)'] * 1000 | date : 'medium' }}</p>
+	<li ng-repeat="thread in vinylCtrl.threads | orderBy: 'UNIX_TIMESTAMP(Date)':true | limitTo: 5 : vinylCtrl.boardIndex"> 
+		<a class="thread-link" ng-href="/#!/{{vinylCtrl.boardName}}/thread/{{thread.ThreadId}}">
+			<h4>{{ thread.Title }}</h4>
+			<p>{{ thread['UNIX_TIMESTAMP(Date)'] * 1000 | date : 'medium' }}
+				<span>{{ thread.UserId }}</span>
+			</p>
+		</a>
 	</li>
+	<div>
+		<span>Pages: </span>
+		<a class="clickable" ng-click="vinylCtrl.seePage(page)" ng-repeat="page in vinylCtrl.pageNumbers()"> {{ page }}</a>	
+	</div>
 </ul>
-<div class="new-topic-form">
+<div ng-show="vinylCtrl.newTopicModal" class="new-topic-form">
 	<h3> New Topic </h3>
-	<div ng-click="signInCtrl.closeModal()" class="box box3 clickable">
+	<p class="error-message"> {{ vinylCtrl.error }} </p>
+	<div ng-click="vinylCtrl.toggleModal()" class="box box3 clickable">
 	  <svg viewbox="0 0 40 40">
 	    <path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" />
 	  </svg>

@@ -1,16 +1,21 @@
-<div class="sign-up-modal">
-	<div ng-click="signInCtrl.closeModal()" class="box box3 clickable">
-	  <svg viewbox="0 0 40 40">
-	    <path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" />
-	  </svg>
+<div class="modal-mask">
+	<a ng-click="signInCtrl.closeModal()"></a>
+	<div class="modal-container">
+		<div class="modal-header">
+			<a class="close clickable" ng-click="signInCtrl.closeModal()"></a>
+			<h3>Sign In</h3>
+			<p class="error-message">{{ signInCtrl.error }}</p>
+		</div>
+		<div class="modal-content">
+			<div>
+				<form novalidate action="">
+					<label for="Username">Username</label><br>
+					<input type="text" ng-class="{ invalid:signInCtrl.invalidForm }" ng-model="signInCtrl.userName"><br>
+					<label for="Password">Password</label><br>
+					<input type="password" ng-class="{ invalid:signInCtrl.invalidForm }" ng-model="signInCtrl.password"><br>
+					<input type="submit" class="button clickable" value="Log In" ng-click="signInCtrl.logIn()">
+				</form>
+			</div>
+		</div>
 	</div>
-	<h3>Sign In</h3>
-	<form novalidate action="">
-		<p class="error-message">{{ signInCtrl.error }}</p>
-		<label for="Username">Username</label><br>
-		<input type="text" ng-class="{ invalid:signInCtrl.invalidForm }" ng-model="signInCtrl.userName"><br>
-		<label for="Password">Password</label><br>
-		<input type="text" ng-class="{ invalid:signInCtrl.invalidForm }" ng-model="signInCtrl.password"><br>
-		<button type="submit" class="clickable" ng-click="signInCtrl.createUser()">Go!</button>
-	</form><br>
 </div>

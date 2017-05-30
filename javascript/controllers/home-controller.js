@@ -6,19 +6,19 @@ angular.module('MusicForum')
 			this.selectBoard = function(board){
 				switch (board){
 				case 'vinyl':
-					$window.location.href ='/#!/home/general/vinyl';
+					$window.location.href ='/#!/general/vinyl';
 					break;
 				case 'cassette':
-					$window.location.href ='/#!/home/general/cassette';
+					$window.location.href ='/#!/general/cassette';
 					break;
 				case 'sales':
-					$window.location.href ='/#!/home/general/sales';
+					$window.location.href ='/#!/general/sales';
 					break;
 				case 'equipment':
-					$window.location.href ='/#!/home/general/equipment';
+					$window.location.href ='/#!/general/equipment';
 					break;
 				case 'random':
-					$window.location.href ='/#!/home/general/random';
+					$window.location.href ='/#!/general/random';
 					break;
 				}
 			};

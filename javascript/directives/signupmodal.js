@@ -27,7 +27,8 @@ angular.module('MusicForum')
 							.then(function successCallback(res){
 								if (res.data.notify.success){
 									$cookies.credentials = res.data.notify.userid;
-									$window.location.href = '/#!/home';
+									main.closeModal();
+									$scope.userLoggedIn = true;
 								} else {
 									main.password = '';
 									main.userName = '';
@@ -47,7 +48,7 @@ angular.module('MusicForum')
 					main.invalidPass = false;
 					main.userName = '';
 					main.password = '';
-					$scope.showSignUp = false;
+					$scope.toggleSignUp();
 				};
 			}],
 			controllerAs: 'signUpCtrl'

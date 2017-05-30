@@ -26,9 +26,11 @@
 	// User Routes
 	require 'routes/users.php';
 	require 'routes/boards.php';
+	require 'routes/threads.php';
 
 	// Controllers
 	require 'controllers/users-controller.php';
 	require 'controllers/board-controller.php';
-
+	require 'controllers/thread-controller.php';
+	
 	$app->run();

@@ -3,25 +3,25 @@
 	use \Psr\Http\Message\ResponseInterface as Response;
 
 	// Retrieve all threads in a forum board
-	$app->get('/tendril/board/{name}', function (Request $req, Response $res) {
-	    $thread = $req->getAttribute('name');
+	$app->get('/tendril/thread/{id}', function (Request $req, Response $res) {
+	    $thread = $req->getAttribute('id');
 
-	    $getBoard = new boardCtrl();
-	    $allThreads = $getBoard->getThreads($thread);
+	    $getThread = new threadCtrl();
+	    $allThreads = $getThread->getPosts($thread);
 
 	    $res->getBody()->write($allThreads);
 	    return $res;
 	});
 
 	// Post a new thread into a forum board
-	$app->post('/tendril/board/{name}', function (Request $req, Response $res) {
-		$type = $req->getAttribute('name');
+	$app->post('/tendril/thread/{id}', function (Request $req, Response $res) {
+		$threadId = $req->getAttribute('id');
 		$userId = intval($req->getCookieParam('userid'));
-		$title = $req->getParam('Title');
+		$content = $req->getParam('Content');
 
-		$getBoard = new boardCtrl();
+		$getThread = new threadCtrl();
 		$usercontrol = new usersCtrl();
-		$result = $getBoard->makeThread($title, $userId, $type);
+		$result = $getThread->makePost($content, $userId, $threadId);
 		$userId = $usercontrol->getUsername($userId);
 
 		$message = '{"notify": {"success":'.$result.',"username": '.json_encode($userId).'}}';
