@@ -1,23 +1,37 @@
-<p>Home > General > Vinyl Collector's Message Board</p>
-<h2>Vinyl Collector's Message Board</h1>
-<p>Everything and anything pertaining to vinyls.</p>
-<ul class="forum-board" ng-init="threadCtrl.getThread()">
+<h4 class="breadcrumb">
+	<span><a href="/#!">Home</a></span> > <span><a href="/#!">General</a> > <a ng-href="/#!/general/{{threadCtrl.boardName}}">{{threadCtrl.boardName}}</a> > {{threadCtrl.threadId}}
+</h4>
+<ul class="topic-chat" ng-init="threadCtrl.getThread()">
 	<div class="board-controls">		
-		<h3>{{threadCtrl.postCount}} TOPICS IN THIS FORUM</h3>
-		<button>New Topic</button>
+		<h3>{{threadCtrl.threadName}} - Total Posts: {{threadCtrl.postCount}}</h3>
+		<button ng-click="threadCtrl.toggleModal()">Post</button>
 	</div>
-	<li ng-repeat="post in threadCtrl.posts | orderBy: 'UNIX_TIMESTAMP(PostDate)':true | limitTo: 5"> 
-			<h4>{{ post.Content }}</h4>
-			<p>{{ post['UNIX_TIMESTAMP(PostDate)'] * 1000 | date : 'medium' }}
-				<span>{{ post.user_id }}</span>
-			</p>
-	</li>
-	<div>
+	<div class="pages-panel">
 		<span>Pages: </span>
 		<a class="clickable" ng-click="threadCtrl.seePage(page)" ng-repeat="page in threadCtrl.pageNumbers()"> {{ page }}</a>	
 	</div>
+	<li ng-repeat="post in threadCtrl.posts | orderBy: 'UNIX_TIMESTAMP(PostDate)':true | limitTo: 25"> 
+		<div class="post-info">
+			<p>{{ post.user_id }}</p>
+			<time>{{ post['UNIX_TIMESTAMP(PostDate)'] * 1000 | date : 'MMM d, y h:mm a' }}</time>
+		</div>
+		<div class="post-content">
+			<p>{{ post.Content }}</p>
+		</div>
+	</li>
 </ul>
-<div>
-	<textarea type="text" ng-model="threadCtrl.content"></textarea>
-	<button ng-click="threadCtrl.postMessage()">Submit</button>
+<div class="modal-mask" ng-show="threadCtrl.newPost">
+	<div class="modal-container">
+		<div class="modal-header">
+			<a class="close clickable" ng-click="threadCtrl.toggleModal()"></a>
+			<h3> Post to Thread </h3>
+			<p class="error-message"> {{ threadCtrl.error }} </p>
+		</div>
+		<div class="modal-content">
+			<div class="post-message">
+				<textarea class="new-topic-message" type="text" ng-model="threadCtrl.content"></textarea>
+				<input type="submit" value="Post" ng-click="threadCtrl.postMessage()">
+			</div>
+		</div>
+	</div>
 </div>

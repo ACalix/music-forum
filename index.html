@@ -24,6 +24,13 @@
 			<signin-modal ng-show="signInModal"></signup-modal>
 		</header>
 		<main ng-view></main>
+		<footer class="footer">
+			<div class="footer-icons">
+				<div class="footer-icon">
+					<a target="_blank" href="https://github.com/ACalix/music-forum"> <img src="/assets/Octocat.png" alt="Github Icon"> </a>
+				</div>
+			</div>
+		 </footer>
 
 		<!-- Angular Dependencies -->
 		<script src="/javascript/lib/angular.min.js"></script>
@@ -41,8 +48,8 @@
 		<!-- Views -->
 		<script src="/javascript/directives/messageboard.js"></script>
 		<script src="javascript/directives/threadchat.js"></script>
+		<script src="/javascript/directives/breadcrumb.js"></script>
 		<script src="/javascript/controllers/frame-controller.js"></script>
 		<script src="/javascript/controllers/home-controller.js"></script>
-		<script src="/javascript/controllers/vinyl-controller.js"></script>
 	</body>
 </html>

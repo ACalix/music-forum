@@ -18,13 +18,14 @@
 		$type = $req->getAttribute('name');
 		$userId = intval($req->getCookieParam('userid'));
 		$title = $req->getParam('Title');
+		$content = $req->getParam('Content');
 
 		$getBoard = new boardCtrl();
 		$usercontrol = new usersCtrl();
-		$result = $getBoard->makeThread($title, $userId, $type);
+		$result = $getBoard->makeThread($title, $userId, $type, $content);
 		$userId = $usercontrol->getUsername($userId);
 
-		$message = '{"notify": {"success":'.$result.',"username": '.json_encode($userId).'}}';
+		$message = '{"notify": {"success":'.json_encode($result[0]).',"username": '.json_encode($userId).',"thread_id": '.json_encode($result[1]).'}}';
 		$res->getBody()->write($message);
 		return $res;
 	});

@@ -1,34 +1,35 @@
-<div class="board-header">
-	<p>Home > General > Vinyl Collector's Message Board</p>
-	<h2>Vinyl Collector's Message Board</h1>
-	<p>Everything and anything pertaining to vinyls.</p>
-</div>
-<ul class="forum-board" ng-init="vinylCtrl.getThreads()">
+<h4 class="breadcrumb"><span><a href="/#!">Home</a></span> > <span><a href="/#!">General</a> > {{boardName}} </h4>
+<ul class="forum-board" ng-init="messageBoardCtrl.getThreads()">
 	<div class="board-controls">		
-		<h3> {{ vinylCtrl.threadCount }} TOPICS IN THIS FORUM</h3>
-		<button ng-click="vinylCtrl.toggleModal()">New Topic</button>
+		<h3> {{ messageBoardCtrl.threadCount }} TOPICS IN THIS FORUM</h3>
+		<button ng-click="messageBoardCtrl.toggleModal()">New Topic</button>
 	</div>
-	<li ng-repeat="thread in vinylCtrl.threads | orderBy: 'UNIX_TIMESTAMP(Date)':true | limitTo: 5 : vinylCtrl.boardIndex"> 
-		<a class="thread-link" ng-href="/#!/{{vinylCtrl.boardName}}/thread/{{thread.ThreadId}}">
+	<li ng-repeat="thread in messageBoardCtrl.threads | orderBy: 'UNIX_TIMESTAMP(Date)':true | limitTo: 10 : messageBoardCtrl.boardIndex"> 
+		<a class="thread-link" ng-href="/#!/{{boardName}}/thread/{{thread.ThreadId}}">
 			<h4>{{ thread.Title }}</h4>
-			<p>{{ thread['UNIX_TIMESTAMP(Date)'] * 1000 | date : 'medium' }}
-				<span>{{ thread.UserId }}</span>
+			<p>{{ thread['UNIX_TIMESTAMP(Date)'] * 1000 | date : 'MMM d, y' }}
+				<span>by <em>{{ thread.UserId }}</em></span>
 			</p>
 		</a>
 	</li>
 	<div>
 		<span>Pages: </span>
-		<a class="clickable" ng-click="vinylCtrl.seePage(page)" ng-repeat="page in vinylCtrl.pageNumbers()"> {{ page }}</a>	
+		<a class="clickable" ng-click="messageBoardCtrl.seePage(page)" ng-repeat="page in messageBoardCtrl.pageNumbers()"> {{ page }}</a>	
 	</div>
 </ul>
-<div ng-show="vinylCtrl.newTopicModal" class="new-topic-form">
-	<h3> New Topic </h3>
-	<p class="error-message"> {{ vinylCtrl.error }} </p>
-	<div ng-click="vinylCtrl.toggleModal()" class="box box3 clickable">
-	  <svg viewbox="0 0 40 40">
-	    <path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" />
-	  </svg>
+<div class="modal-mask" ng-show="messageBoardCtrl.newTopicModal">
+	<div class="modal-container">
+		<div class="modal-header">
+			<a class="close clickable" ng-click="messageBoardCtrl.toggleModal()"></a>
+			<h3> New Topic </h3>
+			<p class="error-message"> {{ messageBoardCtrl.error }} </p>
+		</div>
+		<div class="modal-content">
+			<label for="Title">Title</label><br>
+			<input type="text" class="new-topic-title" maxlength="255" ng-model="messageBoardCtrl.newTitle"><br>
+			<label for="Message" maxlength="1000">Message</label><br>
+			<textarea class="new-topic-message" cols="30" rows="10" ng-model="messageBoardCtrl.newMessage"></textarea><br>
+			<input type="submit" value="Create Thread" ng-click="messageBoardCtrl.createTopic()">
+		</div>
 	</div>
-	<textarea type="text" maxlength="255" ng-model="vinylCtrl.newTitle"></textarea>
-	<button ng-click="vinylCtrl.createTopic()">Create Thread</button>
 </div>

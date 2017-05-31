@@ -8,8 +8,9 @@
 
 	    $getThread = new threadCtrl();
 	    $allThreads = $getThread->getPosts($thread);
+	    $message = '{"notify": {"success": true, "title": "'.$allThreads[0].'", "threads": '.$allThreads[1].'}}';
 
-	    $res->getBody()->write($allThreads);
+	    $res->getBody()->write($message);
 	    return $res;
 	});
 

@@ -27,7 +27,7 @@
 		}
 
 		// Create a new thread on a forum board
-		public function makeThread($title, $userId, $type){
+		public function makeThread($title, $userId, $type, $content){
 			$sql = "INSERT INTO board (UserId, Title, Type)
 			VALUES (:user, :title, :boardName)"; 
 
@@ -40,9 +40,16 @@
 				$stmt->bindParam(':boardName', $type);
 
 				$stmt->execute();
+				$id = intval($db->lastInsertId());
 				$db = null;
 
-				return true;
+				$post = new threadCtrl();
+				$sendMessage = $post->makePost($content, $userId, $id);
+			   if ($sendMessage){
+				 	return array(true, $id);
+				} else {
+					return $result;
+				}
 			} catch(PDOException $e){
 				return array(500, $e->getMessage());
 			}

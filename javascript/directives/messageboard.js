@@ -6,19 +6,20 @@ angular.module('MusicForum')
 			restrict: 'E',
 			scope: false,
 			templateUrl: '/javascript/directives/templates/message-board.html',
-			controller: ['$http', '$routeParams', '$scope',
-				function($http, $routeParams, $scope){
+			controller: ['$http', '$routeParams', '$scope', '$location',
+				function($http, $routeParams, $scope, $location){
 					var main = this;
-					this.boardName = $routeParams.board;
+					$scope.boardName = $routeParams.board;
 					this.threads = '';
 					this.newTitle = '';
+					this.newMessage = '';
 					this.error = '';
 					this.newTopicModal = false;
 					this.threadCount = 0;
 					this.boardIndex = 0;
 
 					this.getThreads = function(){
-						$http({method: 'GET', url: '/tendril/board/' + main.boardName})
+						$http({method: 'GET', url: '/tendril/board/' + $scope.boardName})
 						.then(function successCallback(res){
 							main.threads = res.data;
 							main.threadCount = res.data.length;
@@ -29,29 +30,28 @@ angular.module('MusicForum')
 					};
 
 					this.createTopic = function(){
-						var sendData = {Title: main.newTitle};
+						var sendData = {Title: main.newTitle, Content: main.newMessage};
 
-						if (main.newTitle !== ''){
+						if (main.newTitle !== '' && main.newMessage !== ''){
 							if ($scope.userLoggedIn){
 								$http({method: 'POST', url: '/tendril/board/' + $routeParams.board, data: sendData})
 								.then(function successCallback(res){
-									sendData['UNIX_TIMESTAMP(Date)'] = Math.round((new Date()).getTime() / 1000);
-									sendData['UserId'] = res.data.notify.username;
-									main.threads.push(sendData);
-									main.threadCount += 1;
+									$location.url('/' + $scope.boardName +'/thread/' + res.data.notify.thread_id);
 								}), function errorCallback(res) {
 									alert(res.data);
 								};
 							} else {
 								main.error ='Gotta log in bub';
 							}
+						} else {
+							main.error = 'Please do not leave a field blank';
 						}
 					};
 
 					this.pageNumbers = function(){
 						var pageList = [1];
-						var pages = Math.floor(main.threadCount/5);
-						if (main.threadCount%5 === 0){
+						var pages = Math.floor(main.threadCount/10);
+						if (main.threadCount%10 === 0){
 							pages -= 1;	
 						}
 						
@@ -63,13 +63,16 @@ angular.module('MusicForum')
 
 					this.seePage = function(pageNum){
 						pageNum--;
-						main.boardIndex = pageNum * 5;
+						main.boardIndex = pageNum * 10;
 					};
 
 					this.toggleModal = function(){
 						main.newTopicModal = !(main.newTopicModal);
+						main.error = '';
+						main.newTitle = '';
+						main.newMessage = '';
 					};
 				}],
-			controllerAs: 'vinylCtrl'
+			controllerAs: 'messageBoardCtrl'
 		};
 	});

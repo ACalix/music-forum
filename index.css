@@ -15,6 +15,10 @@ img {
 	display: block;
 }
 
+a {
+	outline: none;
+}
+
 svg {
 	height: auto;
 	width: 100%;
@@ -204,6 +208,7 @@ h1.logo {
 	margin-right: auto;
 	list-style: none;
 	margin-top: 0;
+	margin-bottom: 0;
 	border: solid 1px grey;
 	padding: 0;
 	max-width: 900px;
@@ -265,6 +270,10 @@ h1.logo {
 	display: inline-block;
 }
 
+.thread-link {
+	text-decoration: none;
+	color: black;
+}
 /* End of Generic Forum Board CSS */
 
 /* New Topic Form Styles */
@@ -283,22 +292,133 @@ h1.logo {
 	font-size: 2.4em;
 }
 
-.new-topic-form textarea {
+.new-topic-form label {
+	font-size: 1.8em;
+	margin-bottom: 5px;
+}
+
+.new-topic-title {
+	width: 80%;
+}
+
+.new-topic-message {
 	width: 80%;
 	resize: none;
 	min-height: 200px; 
+	padding: .5em;
 }
 
 .new-topic-form button {
 	margin-top: 15px;
 }
+/* End of New Topic Form CSS */
 
-.thread-link {
-	text-decoration: none;
-	color: black;
+/* Topic Chat CSS */
+
+.topic-chat {
+	background-color: #ebebeb;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	list-style: none;
+	margin-top: 0;
+	margin-bottom: 0;
+	border: solid 1px grey;
+	padding: 0;
+	max-width: 1500px;
 }
 
-/* End of Topic Form Styles */
+.topic-chat li {
+	height: 255px;
+}
+
+.topic-chat li:nth-child(odd) {
+	background-color: white;
+}
+
+.topic-chat h3 {
+	font-size: 2.2em;
+	color: white;
+	margin-left: 10px;
+}
+
+.post-info {
+	text-align: center;
+	height: 100%;
+	width: 15%;
+	display: inline-block;
+	font-size: 1.6em;
+	padding: 2em;
+	box-sizing: border-box;
+}
+
+.post-info time {
+	font-size: 0.8em;
+}
+
+.post-content {
+	display: inline-block;
+	height: 100%;
+	width: 80%;
+	font-size: 1.8em;
+	line-height: 1.5em;
+	box-sizing: border-box;
+	padding-top: 1.5em;
+	padding-bottom: 1.5em;
+	padding-left: 6%;
+	padding-right: 6%;
+	vertical-align: top;
+	letter-spacing: .05em;
+}
+
+.post-message textarea {
+	width: 100%;
+}
+
+/* End of Topic Chat CSS */
+
+
+.pages-panel {
+	background-color: darkgrey;
+}
+
+/* Breadcrumb CSS */
+.breadcrumb {
+	font-size: 1.4em;
+	text-transform: uppercase;
+	letter-spacing: .12em;
+	color: #33b5d6;
+	margin-left: 5%;
+}
+
+.breadcrumb a {
+	text-decoration: none;
+	color: inherit;
+}
+/* End of Breadcrumb CSS */
+
+footer {
+	padding-top: 80px;
+	background-color: #baddf9;
+	margin: 0;
+}
+
+.footer-icons {
+	width: 100%
+}
+
+.footer-icon {
+	height: 50px;
+	width: 50px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.footer-icon img {
+	height: 100%;
+	width: 100%;
+}
+
 @font-face{
 	font-family: 'OpenSans';
 	src: url('/assets/fonts/OpenSans-Regular-webfont.woff') format('woff');

@@ -20,7 +20,9 @@
 					$replaceId = $posts[$i]['user_id'];
 					$posts[$i]['user_id'] = $usercontrol->getUsername($replaceId);
 				}
-				return json_encode($posts, JSON_NUMERIC_CHECK);
+
+				$name = $this->getThreadName($id);
+				return array($name, json_encode($posts, JSON_NUMERIC_CHECK));
 			} catch(PDOException $e){
 				return array(500, $e->getMessage());
 			}
@@ -47,4 +49,22 @@
 				return array(500, $e->getMessage());
 			}
 		}
-	}	
+
+		private function getThreadName($id){
+			$sql = "SELECT Title FROM board WHERE ThreadID = '$id'"; 
+
+			try{
+				// Get DB Object
+				$db = new db();
+				// Connect and retrieve thread info
+				$db = $db->connect();
+				$stmt = $db->query($sql);	
+				$name = $stmt->fetchAll(PDO::FETCH_ASSOC);
+				$db = null;	
+
+				return $name[0]['Title'];
+			} catch(PDOException $e){
+					return array(500, $e->getMessage());
+			}
+		}
+	}
